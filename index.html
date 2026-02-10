@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tosin Fashion Works - Tailoring Brand Portfolio</title>
+  <meta name="description" content="Tosin Fashion Works - a powerful tailoring brand portfolio and archive of works." />
+  <style>
+    :root{
+      --ink:#0f172a;
+      --muted:#475569;
+      --brand:#0ea5a4;
+      --brand-2:#7c3aed;
+      --paper:#f8fafc;
+      --card:#ffffff;
+      --ring:rgba(14,165,164,.25);
+      --shadow:0 10px 30px rgba(2,6,23,.08);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--ink);
+      background:linear-gradient(180deg,#f8fafc 0%,#eef2ff 60%,#f8fafc 100%);
+      line-height:1.6;
+    }
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    .container{width:min(1100px,92%);margin:0 auto}
+    .btn{
+      display:inline-flex;align-items:center;gap:.5rem;
+      padding:.85rem 1.2rem;border-radius:999px;
+      background:var(--brand);color:white;font-weight:600;
+      box-shadow:0 10px 20px var(--ring);
+      border:0;cursor:pointer;
+      transition:.2s;
+    }
+    .btn:hover{transform:translateY(-2px)}
+    .btn.secondary{
+      background:transparent;color:var(--ink);
+      border:1px solid #e2e8f0;
+      box-shadow:none;
+    }
+    .badge{
+      display:inline-flex;align-items:center;gap:.4rem;
+      padding:.35rem .7rem;border-radius:999px;
+      background:#ecfeff;color:#0f766e;
+      font-weight:600;font-size:.8rem;
+      border:1px solid #ccfbf1;
+    }
+
+    /* Header */
+    header{
+      position:sticky;top:0;background:rgba(248,250,252,.85);
+      backdrop-filter:blur(10px);z-index:50;border-bottom:1px solid #e2e8f0;
+    }
+    .nav{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:.8rem 0;gap:1rem;
+    }
+    .brand{
+      display:flex;align-items:center;gap:.7rem;
+      font-weight:700;
+    }
+    .brand img{width:42px;height:42px;border-radius:12px;border:1px solid #e2e8f0;background:white}
+    .navlinks{display:flex;gap:1rem;flex-wrap:wrap}
+    .navlinks a{font-size:.95rem;color:var(--muted)}
+    .navlinks a:hover{color:var(--ink)}
+
+    /* Hero */
+    .hero{
+      padding:3.5rem 0 2.5rem;
+      display:grid;gap:2rem;align-items:center;
+      grid-template-columns:repeat(12,1fr);
+    }
+    .hero-text{grid-column:span 7}
+    .hero-art{grid-column:span 5}
+    .hero h1{font-size:clamp(2.2rem,5vw,3.5rem);line-height:1.1;margin:.6rem 0 1rem}
+    .hero p{color:var(--muted);font-size:1.05rem}
+    .hero-card{
+      background:var(--card);border:1px solid #e2e8f0;border-radius:24px;
+      padding:1.5rem;box-shadow:var(--shadow);
+      position:relative;overflow:hidden;
+    }
+    .hero-card::after{
+      content:"";position:absolute;inset:auto -30% -40% auto;
+      width:300px;height:300px;border-radius:50%;
+      background:radial-gradient(circle,#99f6e4 0%,transparent 70%);
+      opacity:.5;
+    }
+    .stat{
+      display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1.2rem;
+    }
+    .stat div{
+      background:#f1f5f9;border-radius:16px;padding:.8rem;text-align:center;
+    }
+    .stat strong{display:block;font-size:1.1rem}
+
+    /* Sections */
+    section{padding:3rem 0}
+    .section-title{
+      display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:1.2rem
+    }
+    .section-title h2{margin:0;font-size:1.8rem}
+    .section-title p{color:var(--muted);margin:0}
+
+    .grid{
+      display:grid;gap:1.2rem;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    }
+    .card{
+      background:var(--card);border:1px solid #e2e8f0;border-radius:20px;
+      padding:1.2rem;box-shadow:var(--shadow);
+    }
+    .card h3{margin:.4rem 0}
+    .card p{color:var(--muted);margin:.4rem 0 0}
+
+    /* Work archive */
+    .work-card{
+      display:grid;gap:.8rem;
+    }
+    .work-thumb{
+      aspect-ratio:4/3;border-radius:16px;overflow:hidden;
+      background:linear-gradient(135deg,#e2e8f0,#f8fafc);
+      border:1px solid #e2e8f0;position:relative;
+    }
+    .work-thumb svg{position:absolute;inset:0;margin:auto;width:80%;height:80%;opacity:.35}
+    .pill{
+      display:inline-flex;padding:.3rem .6rem;border-radius:999px;
+      background:#f1f5f9;font-size:.75rem;color:#475569;
+    }
+
+    /* Process */
+    .timeline{display:grid;gap:1rem}
+    .step{
+      display:grid;grid-template-columns:48px 1fr;gap:.8rem;align-items:flex-start;
+    }
+    .step span{
+      width:48px;height:48px;border-radius:14px;
+      display:grid;place-items:center;background:#ecfeff;color:#0f766e;
+      font-weight:700;
+    }
+
+    /* Testimonials */
+    .quote{
+      font-style:italic;color:#334155;
+    }
+
+    /* CTA */
+    .cta{
+      background:linear-gradient(135deg,#0ea5a4,#7c3aed);
+      color:white;border-radius:24px;padding:2rem;position:relative;overflow:hidden;
+    }
+    .cta h2{margin:.2rem 0 1rem}
+    .cta p{opacity:.9}
+    .cta .btn{background:white;color:#0f172a}
+
+    /* Footer */
+    footer{
+      padding:2rem 0;border-top:1px solid #e2e8f0;color:#64748b;font-size:.95rem;
+    }
+
+    /* Studio tools */
+    .tools{
+      position:fixed;right:16px;bottom:16px;z-index:60;
+      background:white;border:1px solid #e2e8f0;border-radius:16px;
+      box-shadow:var(--shadow);padding:1rem;max-width:260px;
+    }
+    .tools h4{margin:.2rem 0 .6rem;font-size:1rem}
+    .tools input[type="file"]{width:100%}
+    .tools .btn{width:100%;justify-content:center;margin-top:.6rem}
+
+    /* Responsive */
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr}
+      .hero-text,.hero-art{grid-column:span 12}
+      .nav{flex-wrap:wrap}
+    }
+  </style>
+  <link id="favicon" rel="icon" href="">
+</head>
+<body>
+
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <img id="brandLogo" alt="Tosin Fashion Works Logo" src="" />
+        <div>
+          <div>Tosin Fashion Works</div>
+          <div style="font-size:.8rem;color:#64748b">We sew but God clothes</div>
+        </div>
+      </div>
+      <nav class="navlinks">
+        <a href="#about">About</a>
+        <a href="#works">Work Archive</a>
+        <a href="#services">Services</a>
+        <a href="#process">Process</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a class="btn secondary" href="#contact">Book a Fitting</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero-text">
+        <span class="badge">Tailoring • Couture • Alterations</span>
+        <h1>Powerful tailoring, crafted for identity, elegance, and legacy.</h1>
+        <p>
+          Welcome to <strong>Tosin Fashion Works</strong> — a living archive of our finest garments, 
+          signature fits, and bespoke creations. We turn vision into wearable art with precision, passion,
+          and a promise of excellence.
+        </p>
+        <div style="display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.2rem">
+          <a class="btn" href="#works">Explore Our Works</a>
+          <a class="btn secondary" href="#contact">Get a Quote</a>
+        </div>
+        <div class="stat">
+          <div><strong>150+</strong><span>Completed Pieces</span></div>
+          <div><strong>60+</strong><span>Repeat Clients</span></div>
+          <div><strong>10+</strong><span>Years Craft</span></div>
+        </div>
+      </div>
+      <div class="hero-art">
+        <div class="hero-card">
+          <div class="pill">Signature Look</div>
+          <h3>Structured, clean, and timeless tailoring.</h3>
+          <p>Each piece is cut for confidence, movement, and presence — from ceremonial wear to everyday excellence.</p>
+          <div class="work-thumb" style="margin-top:1rem">
+            <svg viewBox="0 0 200 140" aria-hidden="true">
+              <path d="M20 110 C50 40 150 40 180 110" fill="none" stroke="#0ea5a4" stroke-width="8"/>
+              <rect x="60" y="30" width="80" height="70" rx="12" fill="#7c3aed" opacity=".25"/>
+              <circle cx="100" cy="70" r="22" fill="#0ea5a4" opacity=".25"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="section-title">
+        <div>
+          <h2>About the Brand</h2>
+          <p>Where craftsmanship meets storytelling.</p>
+        </div>
+      </div>
+      <div class="grid">
+        <div class="card">
+          <h3>Our Mission</h3>
+          <p>To craft garments that elevate confidence and reflect personal identity through precise tailoring.</p>
+        </div>
+        <div class="card">
+          <h3>Our Signature</h3>
+          <p>Sharp silhouettes, clean finishes, premium fabric handling, and measured luxury.</p>
+        </div>
+        <div class="card">
+          <h3>Our Promise</h3>
+          <p>On‑time delivery, perfect fit, and a respectful, collaborative design journey.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="works">
+      <div class="section-title">
+        <div>
+          <h2>Work Archive</h2>
+          <p>A curated gallery of signature tailoring works.</p>
+        </div>
+      </div>
+      <div class="grid">
+        <div class="card work-card">
+          <div class="work-thumb">
+            <svg viewBox="0 0 200 140" aria-hidden="true">
+              <path d="M30 100 L90 30 L150 100" stroke="#0ea5a4" stroke-width="6" fill="none"/>
+              <circle cx="100" cy="60" r="24" fill="#0ea5a4" opacity=".25"/>
+            </svg>
+          </div>
+          <div class="pill">Agbada Set</div>
+          <h3>Royal Ceremony</h3>
+          <p>Regal, layered, and finished with refined details.</p>
+        </div>
+        <div class="card work-card">
+          <div class="work-thumb">
+            <svg viewBox="0 0 200 140" aria-hidden="true">
+              <rect x="40" y="30" width="120" height="80" rx="14" fill="#7c3aed" opacity=".25"/>
+              <path d="M50 90 Q100 40 150 90" stroke="#7c3aed" stroke-width="6" fill="none"/>
+            </svg>
+          </div>
+          <div class="pill">Kaftan</div>
+          <h3>Evening Classic</h3>
+          <p>Minimalist elegance with a strong, clean drape.</p>
+        </div>
+        <div class="card work-card">
+          <div class="work-thumb">
+            <svg viewBox="0 0 200 140" aria-hidden="true">
+              <circle cx="80" cy="70" r="30" fill="#0ea5a4" opacity=".25"/>
+              <circle cx="120" cy="70" r="30" fill="#7c3aed" opacity=".25"/>
+            </svg>
+          </div>
+          <div class="pill">Corporate Wear</div>
+          <h3>Executive Fit</h3>
+          <p>Tailored for power, polish, and long‑lasting comfort.</p>
+        </div>
+        <div class="card work-card">
+          <div class="work-thumb">
+            <svg viewBox="0 0 200 140" aria-hidden="true">
+              <path d="M20 120 L180 20" stroke="#0ea5a4" stroke-width="6"/>
+              <path d="M20 20 L180 120" stroke="#7c3aed" stroke-width="6"/>
+            </svg>
+          </div>
+          <div class="pill">Alterations</div>
+          <h3>Precision Adjustments</h3>
+          <p>Masterful refinements for a perfect, confident fit.</p>
+        </div>
+        <div class="card work-card">
+          <div class="work-thumb">
+            <svg viewBox="0 0 200 140" aria-hidden="true">
+              <rect x="30" y="30" width="140" height="80" rx="12" fill="#0ea5a4" opacity=".25"/>
+              <rect x="60" y="50" width="80" height="40" rx="10" fill="#7c3aed" opacity=".25"/>
+            </svg>
+          </div>
+          <div class="pill">Bridal</div>
+          <h3>Grace & Glamour</h3>
+          <p>Hand‑finished details for unforgettable moments.</p>
+        </div>
+        <div class="card work-card">
+          <div class="work-thumb">
+            <svg viewBox="0 0 200 140" aria-hidden="true">
+              <path d="M40 100 C60 40 140 40 160 100" stroke="#7c3aed" stroke-width="6" fill="none"/>
+            </svg>
+          </div>
+          <div class="pill">Casual</div>
+          <h3>Everyday Luxe</h3>
+          <p>Relaxed cuts with premium tailoring discipline.</p>
+        </div>
+        <div class="card work-card">
+          <div class="work-thumb">
+            <svg viewBox="0 0 200 140" aria-hidden="true">
+              <circle cx="100" cy="70" r="40" fill="#0ea5a4" opacity=".2"/>
+              <circle cx="100" cy="70" r="20" fill="#7c3aed" opacity=".3"/>
+            </svg>
+          </div>
+          <div class="pill">Uniforms</div>
+          <h3>Brand Identity</h3>
+          <p>Professional uniforms that speak your values.</p>
+        </div>
+        <div class="card work-card">
+          <div class="work-thumb">
+            <svg viewBox="0 0 200 140" aria-hidden="true">
+              <path d="M30 30 H170 V110 H30 Z" stroke="#0ea5a4" stroke-width="6" fill="none"/>
+            </svg>
+          </div>
+          <div class="pill">Custom</div>
+          <h3>One‑of‑One</h3>
+          <p>Collaborative design from sketch to stitch.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="section-title">
+        <div>
+          <h2>Services</h2>
+          <p>Premium tailoring services tailored to your needs.</p>
+        </div>
+      </div>
+      <div class="grid">
+        <div class="card">
+          <h3>Bespoke Tailoring</h3>
+          <p>From consultation to final fitting, we create garments that fit you perfectly.</p>
+        </div>
+        <div class="card">
+          <h3>Alterations & Repairs</h3>
+          <p>Precise adjustments for fit, structure, and finishing.</p>
+        </div>
+        <div class="card">
+          <h3>Event & Ceremony Wear</h3>
+          <p>Command presence with luxury tailoring for your special occasions.</p>
+        </div>
+        <div class="card">
+          <h3>Corporate & Uniforms</h3>
+          <p>Uniform packages designed to project professionalism and unity.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="process">
+      <div class="section-title">
+        <div>
+          <h2>Our Process</h2>
+          <p>From vision to wardrobe — a refined workflow.</p>
+        </div>
+      </div>
+      <div class="timeline">
+        <div class="step">
+          <span>1</span>
+          <div>
+            <h3>Consultation</h3>
+            <p>We discuss your style goals, event needs, and fabric preferences.</p>
+          </div>
+        </div>
+        <div class="step">
+          <span>2</span>
+          <div>
+            <h3>Measurements</h3>
+            <p>Precise measurements for a confident, tailored fit.</p>
+          </div>
+        </div>
+        <div class="step">
+          <span>3</span>
+          <div>
+            <h3>Design & Cut</h3>
+            <p>Pattern drafting and expert cutting for flawless structure.</p>
+          </div>
+        </div>
+        <div class="step">
+          <span>4</span>
+          <div>
+            <h3>Stitch & Finish</h3>
+            <p>Clean finishing and detail work for premium craftsmanship.</p>
+          </div>
+        </div>
+        <div class="step">
+          <span>5</span>
+          <div>
+            <h3>Final Fitting</h3>
+            <p>We refine and deliver your final piece with perfection.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title">
+        <div>
+          <h2>Client Words</h2>
+          <p>Proof of excellence in every stitch.</p>
+        </div>
+      </div>
+      <div class="grid">
+        <div class="card">
+          <p class="quote">“The fit was perfect and the finishing was elite. I felt powerful.”</p>
+          <strong>— Client A</strong>
+        </div>
+        <div class="card">
+          <p class="quote">“Tosin Fashion Works exceeded my expectations. Sharp and elegant.”</p>
+          <strong>— Client B</strong>
+        </div>
+        <div class="card">
+          <p class="quote">“Professional and on time. I’ve become a repeat client.”</p>
+          <strong>— Client C</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta" id="contact">
+      <div class="section-title" style="margin-bottom:.5rem">
+        <h2>Let’s create your next masterpiece.</h2>
+      </div>
+      <p>Contact Tosin Fashion Works for fittings, consultations, or collaborations.</p>
+      <div style="display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1rem">
+        <a class="btn" href="https://wa.me/2348132845660" target="_blank" rel="noopener">WhatsApp: 08132845660</a>
+        <a class="btn secondary" href="https://x.com/Mouseng20" target="_blank" rel="noopener">X: @Mouseng20</a>
+        <a class="btn secondary" href="https://www.tiktok.com/@tosinchukwu" target="_blank" rel="noopener">TikTok: @tosinchukwu</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container" style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem">
+      <div class="brand">
+        <img id="brandLogoFooter" alt="Tosin Fashion Works Logo" src="" />
+        <div>
+          <div><strong>Tosin Fashion Works</strong></div>
+          <div>We sew but God clothes</div>
+        </div>
+      </div>
+      <div>© <span id="year"></span> Tosin Fashion Works. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <!-- Studio Tools (removed from ZIP export) -->
+  <div class="tools" data-export-remove>
+    <h4>Studio Tools</h4>
+    <label style="font-size:.85rem;color:#64748b">Replace Logo</label>
+    <input id="logoInput" type="file" accept="image/*" />
+    <button id="downloadZip" class="btn">Download Site (.zip)</button>
+    <p style="font-size:.75rem;color:#94a3b8;margin:.5rem 0 0">
+      Upload logo → it updates everywhere and exports in ZIP.
+    </p>
+  </div>
+
+  <!-- JSZip (for download) -->
+  <script data-export-remove src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
+  <script>
+    const defaultLogoSvg = `
+      <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120">
+        <defs>
+          <linearGradient id="g" x1="0" x2="1">
+            <stop offset="0" stop-color="#0ea5a4"/>
+            <stop offset="1" stop-color="#7c3aed"/>
+          </linearGradient>
+        </defs>
+        <rect width="120" height="120" rx="22" fill="white"/>
+        <path d="M20 90 C40 40 80 40 100 90" stroke="url(#g)" stroke-width="10" fill="none"/>
+        <circle cx="60" cy="60" r="18" fill="url(#g)" opacity=".4"/>
+        <text x="60" y="110" text-anchor="middle" font-size="16" fill="#0f172a" font-family="Arial">Tosin</text>
+      </svg>
+    `;
+    const defaultLogoDataUrl = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(defaultLogoSvg);
+
+    const logoEls = [document.getElementById("brandLogo"), document.getElementById("brandLogoFooter")];
+    const favicon = document.getElementById("favicon");
+    const year = document.getElementById("year");
+    year.textContent = new Date().getFullYear();
+
+    function setLogo(src){
+      logoEls.forEach(el => el.src = src);
+      favicon.href = src;
+    }
+    setLogo(defaultLogoDataUrl);
+
+    document.getElementById("logoInput").addEventListener("change", (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = () => setLogo(reader.result);
+      reader.readAsDataURL(file);
+    });
+
+    function exportCleanHtml(){
+      const clone = document.documentElement.cloneNode(true);
+      clone.querySelectorAll("[data-export-remove]").forEach(el => el.remove());
+      const doctype = "<!DOCTYPE html>";
+      return doctype + "\n" + clone.outerHTML;
+    }
+
+    document.getElementById("downloadZip").addEventListener("click", async () => {
+      if (!window.JSZip) {
+        alert("JSZip not loaded. If blocked here, download won’t work in this sandbox.");
+        return;
+      }
+      const zip = new JSZip();
+      const html = exportCleanHtml();
+      zip.file("index.html", html);
+
+      const blob = await zip.generateAsync({ type: "blob" });
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = "tosin-fashion-works-site.zip";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(a.href);
+    });
+  </script>
+</body>
+</html>
